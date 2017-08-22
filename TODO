@@ -1,0 +1,11 @@
+Adding to existing note without overwriting
+Ignore capitalizations in note or dictionary names
+Add remove dictionary functionality
+Add change note name functionality
+Rename note names to subject
+When no note subject is entered, set default subject name as DD:MM:YY HH:MM:SS
+Accept shift enter for multiple line notes
+Up key should fetch the existing note content to the buffer while entering a new note content
+add esc input for escaping out of enter name/content prompts
+each program close should create a new version of source files, keeping a total of 10 for file pool size, for redundancy purposes
+Add installation support, through aliasing the run command, check readlink -f script.py for finding the path of the script
