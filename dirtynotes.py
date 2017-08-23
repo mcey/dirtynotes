@@ -4,7 +4,7 @@ SOURCE_FILE = 'dictionaries.txt'
 def displayMainMenu():
 	exitState = 0;
 	#dictionaries = loadDictionaries()
-	menu = "(L)ist All Dictionaries\n(N)ew Dictionary\n(F)ind Dictionary\n(E)xit\n"
+	menu = "(L)ist All Dictionaries\n(N)ew Dictionary\n(F)ind Dictionary\n(D)elete Dictionary\n(E)xit\n"
 	while(not exitState):
 		os.system('clear')
 		print(menu)
@@ -18,12 +18,12 @@ def displayMainMenu():
 			createNewDictionary()
 		elif command == 'F':
 			displayFindDictionaryScreen()
-
-
+		elif command == 'D':
+			showDeleteDictionaryScreen()
 
 
 def ListAllDictionaries():
-	menu = ("(O)pen Dictionary\n(M)ain Menu\n")
+	menu = ("(O)pen Dictionary\n(D)elete Dictionary\n(M)ain Menu\n")
 	os.system('clear')
 	print(menu)
 	for key in dictionaries.keys():
@@ -32,6 +32,9 @@ def ListAllDictionaries():
 
 	if command == 'O':
 		displayFindDictionaryScreen()
+	elif command == 'D':
+		showDeleteDictionaryScreen()
+		ListAllDictionaries()
 
 
 
@@ -120,6 +123,10 @@ def createNewDictionary():
 		getPressedKey()
 		displayDictionaryScreen(dictionaryName)
 
+
+def showDeleteDictionaryScreen():
+	dictionaryName = str(raw_input("Enter dictionary name: "))
+	del dictionaries[dictionaryName]
 
 def saveDictionaries():
 	file = open(SOURCE_FILE, 'w')

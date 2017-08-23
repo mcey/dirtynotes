@@ -1,6 +1,5 @@
 Adding to existing note without overwriting
 Ignore capitalizations in note or dictionary names
-Add remove dictionary functionality
 Add change note name functionality
 Rename note names to subject
 When no note subject is entered, set default subject name as DD:MM:YY HH:MM:SS
