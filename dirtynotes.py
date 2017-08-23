@@ -61,7 +61,7 @@ def getPressedKey():
 
 
 def displayFindDictionaryScreen():
-	dictionaryName = str(raw_input("Enter dictionary name: "))
+	dictionaryName = str(raw_input("Enter dictionary name: ")).upper()
 	dictionary = findDictionary(dictionaryName)
 	if dictionary == -1:
 		print("{} not found".format(dictionaryName))
@@ -81,13 +81,13 @@ def displayDictionaryScreen(dictionaryName):
 	command = getPressedKey().upper()
 
 	if command == 'N':
-		key = str(raw_input("Enter note name: "))
+		key = str(raw_input("Enter note name: ")).upper()
 		content = str(raw_input("Enter note content: "))
 		dictionary[key] = content
 		saveDictionaries()
 		displayDictionaryScreen(dictionaryName)
 	elif command == 'E':
-		key = str(raw_input("Enter note name: "))
+		key = str(raw_input("Enter note name: ")).upper()
 		print(dictionary[key])
 		content = content = str(raw_input("Enter new note content: "))
 		dictionary[key] = content
@@ -95,7 +95,7 @@ def displayDictionaryScreen(dictionaryName):
 		print(dictionary[key])
 		displayDictionaryScreen(dictionaryName)
 	elif command == 'D':
-		key = str(raw_input("Enter note name: "))
+		key = str(raw_input("Enter note name: ")).upper()
 		del dictionary[key]
 		saveDictionaries()
 		displayDictionaryScreen(dictionaryName)
@@ -113,7 +113,7 @@ def findDictionary(dictionaryName):
 
 
 def createNewDictionary():
-	dictionaryName = str(raw_input("Enter dictionary name: "))
+	dictionaryName = str(raw_input("Enter dictionary name: ")).upper()
 	if findDictionary(dictionaryName) == -1:
 		dictionaries[dictionaryName] = {}
 		saveDictionaries()
@@ -125,7 +125,7 @@ def createNewDictionary():
 
 
 def showDeleteDictionaryScreen():
-	dictionaryName = str(raw_input("Enter dictionary name: "))
+	dictionaryName = str(raw_input("Enter dictionary name: ")).upper()
 	del dictionaries[dictionaryName]
 
 def saveDictionaries():
