@@ -74,7 +74,7 @@ def displayFindDictionaryScreen():
 
 def displayDictionaryScreen(dictionaryName):
 	os.system('clear')
-	dictionaryMenu = "(N)ew Note\n(E)dit Note\n(D)elete Note\n(M)ain Menu\n"
+	dictionaryMenu = "(N)ew Note\n(E)dit Note\n(C)hange Note Name\n(D)elete Note\n(M)ain Menu\n"
 	dictionary = dictionaries[dictionaryName]
 	print(dictionaryMenu);
 	printDictionary(dictionaryName)
@@ -94,6 +94,8 @@ def displayDictionaryScreen(dictionaryName):
 		saveDictionaries()
 		print(dictionary[key])
 		displayDictionaryScreen(dictionaryName)
+	elif command == "C":
+		showChangeNoteNamePrompt(dictionaryName)
 	elif command == 'D':
 		key = str(raw_input("Enter note name: ")).upper()
 		del dictionary[key]
@@ -155,6 +157,13 @@ def printDictionary(dictionaryName):
 	print("Dictionary: {}".format(dictionaryName))
 	for key in dictionaries[dictionaryName].keys():
 		print("{}: {}".format(key, dictionaries[dictionaryName][key]))
+
+
+def showChangeNoteNamePrompt(dictionaryName):
+	oldName = str(raw_input("Enter old note name: ")).upper()
+	newName = str(raw_input("Enter new note name: ")).upper()
+	dictionaries[dictionaryName][newName] = dictionaries[dictionaryName].pop(oldName)
+	displayDictionaryScreen(dictionaryName)
 
 
 dictionaries = loadDictionaries()

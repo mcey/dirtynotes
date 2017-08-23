@@ -1,5 +1,4 @@
 Adding to existing note without overwriting
-Add change note name functionality
 Rename note names to subject
 When no note subject is entered, set default subject name as DD:MM:YY HH:MM:SS
 Accept shift enter for multiple line notes
