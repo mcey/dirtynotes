@@ -17,7 +17,7 @@ def displayMainMenu():
 		elif command == 'N':
 			createNewDictionary()
 		elif command == 'F':
-			displayFindDictionaryScreen()
+			displayFindDictionaryNameScreen()
 		elif command == 'D':
 			showDeleteDictionaryScreen()
 
@@ -31,7 +31,7 @@ def ListAllDictionaries():
 	command = getPressedKey().upper()
 
 	if command == 'O':
-		displayFindDictionaryScreen()
+		displayFindDictionaryNameScreen()
 	elif command == 'D':
 		showDeleteDictionaryScreen()
 		ListAllDictionaries()
@@ -60,11 +60,9 @@ def getPressedKey():
 	    fcntl.fcntl(fd, fcntl.F_SETFL, oldflags)
 
 
-def displayFindDictionaryScreen():
-	dictionaryName = str(raw_input("Enter dictionary name: "))
-	dictionary = findDictionary(dictionaryName)
-	if dictionary == -1:
-		print("{} not found".format(dictionaryName))
+def displayFindDictionaryNameScreen():
+	dictionaryName = findDictionaryName()
+	if dictionaryName == -1:
 		getPressedKey();
 		return
 	else:
@@ -106,20 +104,23 @@ def displayDictionaryScreen(dictionaryName):
 
 
 
-def findDictionary(dictionaryName):
-	if dictionaryName not in dictionaries.keys():
-		return -1
-	else:
-		return dictionaries[dictionaryName]
-
+def findDictionaryName(nameInput = None):
+	if(nameInput == None):
+		nameInput = str(raw_input("Enter dictionary name: "))
+	for key in dictionaries.keys():
+		if nameInput.upper() == key.upper():
+			return key
+	print("No such dictionary exists")
+	return -1
 
 
 def createNewDictionary():
-	dictionaryName = str(raw_input("Enter dictionary name: "))
-	if findDictionary(dictionaryName) == -1:
-		dictionaries[dictionaryName] = {}
+	nameInput = str(raw_input("Enter dictionary name: "))
+	dictionaryName = findDictionaryName(nameInput)
+	if dictionaryName == -1:
+		dictionaries[nameInput] = {}
 		saveDictionaries()
-		displayDictionaryScreen(dictionaryName)
+		displayDictionaryScreen(nameInput)
 	else:
 		print("Dictionary {0} exists. Opening it now...".format(dictionaryName))
 		getPressedKey()
@@ -127,8 +128,10 @@ def createNewDictionary():
 
 
 def showDeleteDictionaryScreen():
-	dictionaryName = str(raw_input("Enter dictionary name: "))
-	del dictionaries[dictionaryName]
+	dictionaryName = findDictionaryName()
+	if dictionaryName != -1:
+		del dictionaries[dictionaryName]
+	getPressedKey()
 
 def saveDictionaries():
 	file = open(SOURCE_FILE, 'w')
@@ -160,7 +163,7 @@ def printDictionary(dictionaryName):
 
 
 def showChangeNoteNamePrompt(dictionaryName):
-	oldName = str(raw_input("Enter old note name: "))
+	oldName = str(raw_input("Enter the old note name: "))
 	newName = str(raw_input("Enter new note name: "))
 	dictionaries[dictionaryName][newName] = dictionaries[dictionaryName].pop(oldName)
 	displayDictionaryScreen(dictionaryName)
