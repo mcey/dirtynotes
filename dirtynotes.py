@@ -61,7 +61,7 @@ def getPressedKey():
 
 
 def displayFindDictionaryScreen():
-	dictionaryName = str(raw_input("Enter dictionary name: ")).upper()
+	dictionaryName = str(raw_input("Enter dictionary name: "))
 	dictionary = findDictionary(dictionaryName)
 	if dictionary == -1:
 		print("{} not found".format(dictionaryName))
@@ -81,13 +81,13 @@ def displayDictionaryScreen(dictionaryName):
 	command = getPressedKey().upper()
 
 	if command == 'N':
-		key = str(raw_input("Enter note name: ")).upper()
+		key = str(raw_input("Enter note name: "))
 		content = str(raw_input("Enter note content: "))
 		dictionary[key] = content
 		saveDictionaries()
 		displayDictionaryScreen(dictionaryName)
 	elif command == 'E':
-		key = str(raw_input("Enter note name: ")).upper()
+		key = str(raw_input("Enter note name: "))
 		print(dictionary[key])
 		content = content = str(raw_input("Enter new note content: "))
 		dictionary[key] = content
@@ -97,7 +97,7 @@ def displayDictionaryScreen(dictionaryName):
 	elif command == "C":
 		showChangeNoteNamePrompt(dictionaryName)
 	elif command == 'D':
-		key = str(raw_input("Enter note name: ")).upper()
+		key = str(raw_input("Enter note name: "))
 		del dictionary[key]
 		saveDictionaries()
 		displayDictionaryScreen(dictionaryName)
@@ -115,7 +115,7 @@ def findDictionary(dictionaryName):
 
 
 def createNewDictionary():
-	dictionaryName = str(raw_input("Enter dictionary name: ")).upper()
+	dictionaryName = str(raw_input("Enter dictionary name: "))
 	if findDictionary(dictionaryName) == -1:
 		dictionaries[dictionaryName] = {}
 		saveDictionaries()
@@ -127,7 +127,7 @@ def createNewDictionary():
 
 
 def showDeleteDictionaryScreen():
-	dictionaryName = str(raw_input("Enter dictionary name: ")).upper()
+	dictionaryName = str(raw_input("Enter dictionary name: "))
 	del dictionaries[dictionaryName]
 
 def saveDictionaries():
@@ -160,8 +160,8 @@ def printDictionary(dictionaryName):
 
 
 def showChangeNoteNamePrompt(dictionaryName):
-	oldName = str(raw_input("Enter old note name: ")).upper()
-	newName = str(raw_input("Enter new note name: ")).upper()
+	oldName = str(raw_input("Enter old note name: "))
+	newName = str(raw_input("Enter new note name: "))
 	dictionaries[dictionaryName][newName] = dictionaries[dictionaryName].pop(oldName)
 	displayDictionaryScreen(dictionaryName)
 
